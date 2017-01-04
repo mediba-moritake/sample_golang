@@ -1,0 +1,21 @@
+sudo: false
+
+language: go
+
+go:
+  - 1.7.3
+
+before_install:
+  - make glide
+
+install:
+  - make deps
+
+before_script:
+  - export PATH=$HOME/gopath/bin:$PATH
+
+script:
+  - make test
+  - make
+
+after_script:

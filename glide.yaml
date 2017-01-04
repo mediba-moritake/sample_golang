@@ -1,0 +1,9 @@
+package: github.com/mediba-moritake/sample_golang
+import:
+- package: github.com/aws/aws-sdk-go
+  version: v1.6.9
+  subpackages:
+  - aws
+  - aws/credentials
+  - aws/session
+  - service/s3
