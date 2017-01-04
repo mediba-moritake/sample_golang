@@ -6,13 +6,14 @@ go:
   - 1.7.3
 
 before_install:
-  - export PATH=$HOME/gopath/bin:$PATH
+  - env
   - make glide
 
 install:
   - make deps
 
 before_script:
+  - export PATH=$HOME/gopath/bin:$PATH
 
 script:
   - make test
