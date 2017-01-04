@@ -19,8 +19,8 @@ glide:
 	curl -fsSL "$(GLIDE_DOWNLOAD_URL)" -o glide.tar.gz
 	tar -xzf glide.tar.gz
 	ls -alt linux-amd64/glide
-	mv linux-amd64/glide /home/travis/gopath/bin
-	ls -alt /home/travis/gopath/bin
+	mv linux-amd64/glide /home/travis/gopath/bin/
+	ls -alt /home/travis/gopath/bin/
 
 deps:
 	glide install
