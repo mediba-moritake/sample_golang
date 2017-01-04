@@ -18,9 +18,9 @@ $(NAME).$(GOOS).$(GOARCH).gz: $(NAME).$(GOOS).$(GOARCH)
 glide:
 	curl -fsSL "$(GLIDE_DOWNLOAD_URL)" -o glide.tar.gz
 	tar -xzf glide.tar.gz
-	ls -alt linux-amd64/glide
-	mv linux-amd64/glide /home/travis/gopath
-	ls -alt /home/travis/gopath
+	mkdir -p /home/travis/bin
+	mv linux-amd64/glide /home/travis/bin
+	export PATH="$HOME/bin:$PATH"
 
 deps:
 	glide install
