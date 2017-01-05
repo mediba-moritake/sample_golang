@@ -23,9 +23,8 @@ after_script:
 
 addons:
   artifacts:
+    s3_region: "ap-northeast-1"
     paths:
       - $(git ls-files -o --exclude-standard | tr "\n" ":")
     debug: true
-    bucket: game-image-dev
     target-paths: artifacts/$TRAVIS_REPO_SLUG/$TRAVIS_BRANCH
-  s3_region: "ap-northeast-1"
