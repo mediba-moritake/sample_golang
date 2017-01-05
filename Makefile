@@ -21,6 +21,8 @@ glide:
 	mkdir -p /home/travis/bin
 	mv linux-amd64/glide /home/travis/bin
 	export PATH="$HOME/bin:$PATH"
+	rm -rf glide.tar.gz
+	rm -rf linux-amd64
 
 deps:
 	glide install
