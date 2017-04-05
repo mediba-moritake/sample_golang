@@ -1,6 +1,6 @@
 .PHONY: build glide deps fmt imports lint vet test clean
 
-NAME := hello
+NAME := sample
 GOOS := linux
 GOARCH := amd64
 GLIDE_VERSION := 0.12.3
@@ -9,7 +9,7 @@ GLIDE_DOWNLOAD_URL := https://github.com/Masterminds/glide/releases/download/v$(
 build: $(NAME).$(GOOS).$(GOARCH).gz
 
 $(NAME).$(GOOS).$(GOARCH):
-	GOOS=$(GOOS) GOARCH=$(GOARCH) go build -o $(NAME) src/main.go
+	GOOS=$(GOOS) GOARCH=$(GOARCH) go build -o $(NAME) .
 	mv $(NAME) $@
 
 $(NAME).$(GOOS).$(GOARCH).gz: $(NAME).$(GOOS).$(GOARCH)
