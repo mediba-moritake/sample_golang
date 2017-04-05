@@ -1,4 +1,4 @@
-.PHONY: build glide deps test
+.PHONY: build glide deps fmt imports lint vet test clean
 
 NAME := hello
 GOOS := linux
@@ -26,10 +26,30 @@ glide:
 
 deps:
 	glide install
+	go get -u golang.org/x/tools/cmd/goimports
+	go get -u github.com/golang/lint/golint
+
+fmt:
+	find . -type f -name '*.go' -not -path "./vendor/*" | xargs -n 1 gofmt -d -e | tee gofmt.txt
+	test ! -s gofmt.txt
+	rm -rf gofmt.txt
+
+imports:
+	find . -type f -name '*.go' -not -path "./vendor/*" | xargs -n 1 goimports -d -e | tee goimports.txt
+	test ! -s goimports.txt
+	rm -rf goimports.txt
+
+lint:
+	glide novendor | xargs -n 1 golint | tee golint.txt
+	test ! -s golint.txt
+	rm -rf golint.txt
+
+vet:
+	glide novendor | xargs -n 1 go vet
 
 test:
-	go test -v ./src/...
+	glide novendor | xargs -n 1 go test -v
 
 clean:
-	-rm -rf $(NAME).$(GOOS).$(GOARCH)
-	-rm -rf $(NAME).$(GOOS).$(GOARCH).gz
+	rm -rf $(NAME).$(GOOS).$(GOARCH)
+	rm -rf $(NAME).$(GOOS).$(GOARCH).gz

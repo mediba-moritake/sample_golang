@@ -1,9 +1,7 @@
-sudo: required
-
 language: go
 
 go:
-  - 1.7.3
+  - 1.7.5
 
 before_install:
   - make glide
@@ -13,9 +11,13 @@ install:
 
 before_script:
   - export PATH=$HOME/gopath/bin:$PATH
+  - make fmt
+  - make imports
+  - make lint
+  - make vet
+  - make test
 
 script:
-  - make test
   - make
 
 after_script:
